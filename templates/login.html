@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <form class="login" action="" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Login</button>
+        <br>
+        {% if error %}
+            <br>
+            <p>{{ error }}</p>
+        {% endif %}
+    </form>
+    <a class="back" href="/">Back to the main page</a>
+{% endblock %}

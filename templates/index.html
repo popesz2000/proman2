@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block body %}
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a id="createPublicBoard" class="nav-item nav-link" href="#">Create Public board</a>
+                    <a class="nav-item nav-link" href="/registration">Registration</a>
+                    <a class="nav-item nav-link" href="/login">Login</a>
+                    {% if session['username'] %}
+                        <a class="nav-item nav-link" href="#">Create private board</a>
+                        <a class="nav-item nav-link" href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% if session['username'] %}
+                <p id="signed">Signed in as {{ session['username'] }}</p>
+            {% endif %}
+        </nav>
+        <h1>ProMan</h1>
+        <div class="board-container">
+        <button id="rename-save" style="visibility: hidden;">Save</button>
+        </div>
+
+        <div id="createBoard" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create New Board</h5>
+                        <a class="close" href="#">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="board-name">Board Name:</label>
+                            <input type="text" class="form-control" name="board-name" id="board-name" placeholder="Board Name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="createBoardButton" class="btn btn-primary">Create Board</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="createCard" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create New Card</h5>
+                        <a class="close" href="#">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="card-name">Card Name:</label>
+                            <input type="text" class="form-control" name="card-name" id="card-name" placeholder="Card Name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="createCardButton" class="btn btn-primary">Create Card</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="archivedCards" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Archieved cards</h5>
+                        <a class="close" href="#">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="archived-cards-list">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
